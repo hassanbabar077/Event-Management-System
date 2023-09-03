@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\OrganizerController;
+use App\Http\Controllers\Auth\AttendeeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +20,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/' , [FrontController::class , 'index'])->name('index');
+
+Route::prefix('admin')->group(function () {
+
+
+    Route::get('/login' , [HomeController::class , 'login'])->name('admin.login');
+
+    Route::post('/post-login' , [AuthController::class , 'postlogin'])->name('admin.postlogin');
+
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/logout' , [AuthController::class , 'logout'])->name('logout');
+
+        Route::get('/index' , [HomeController::class , 'index'])->name('admin.index');
+
+        Route::get('/service' , [HomeController::class , 'service'])->name('admin.service');
+
+
+
+    });
+
+
+
 });
+
+Route::prefix('attendee')->group(function () {
+
+    Route::get('/login' , [AttendeeController::class , 'login'])->name('attendee.login');
+    Route::get('/register' , [AttendeeController::class , 'register'])->name('attendee.register');
+    Route::post('/post-login' , [AttendeeController::class , 'postlogin'])->name('attendee.postlogin');
+    Route::post('/post-register' , [AttendeeController::class , 'postregister'])->name('attendee.postregister');
+    Route::get('/logout' , [AttendeeController::class , 'logout'])->name('attendee.logout');
+
+
+
+});
+
+
+
+
