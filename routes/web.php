@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OrganizerController;
 use App\Http\Controllers\Auth\AttendeeController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Auth\AttendeeController;
 
 
 Route::get('/' , [FrontController::class , 'index'])->name('index');
+Route::get('event' , [FrontController::class , 'event'])->name('event');
 
 Route::prefix('admin')->group(function () {
 
@@ -38,6 +40,13 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/service' , [HomeController::class , 'service'])->name('admin.service');
 
+//event
+
+        Route::get('/view/event', [EventController::class, 'index'])->name('admin.event');
+
+        Route::any('/create/event/info/{id?}', [EventController::class, 'create'])->name('create.eventinfo');
+
+        Route::get('/delete/event/info/{id?}', [EventController::class, 'destroy'])->name('delete.eventinfo');
 
 
     });
