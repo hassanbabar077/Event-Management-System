@@ -27,7 +27,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{route('admin.events')}}" class="menu-link">
+            <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dish"></i>
                 <div data-i18n="Authentications">Service</div>
             </a>
