@@ -12,7 +12,7 @@
           <li class="nav-item"><a href="speakers.html" class="nav-link">Speakers</a></li>
           <li class="nav-item"><a href="schedule.html" class="nav-link">Schedule</a></li>
           <li class="nav-item"><a href="" class="nav-link">Organizer</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
           <li class="nav-item cta mr-md-2"><a href="#" class="nav-link">Buy ticket</a></li>
 
           @if (!Auth::guard('attendee')->check())

@@ -4,23 +4,22 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\event;
+use App\Models\Service;
 
-
-class EventController extends Controller
+class ServiceController extends Controller
 {
     public function index()
     {
-        $record = event::all();
-        return view('admin.pages.events.index', compact('record'));
+        $record = Service::all();
+        return view('admin.pages.service.services', compact('record'));
     }
 
     public function create(Request $request, $record = null)
     {
         if ($record == "") {
-            $record = new event;
+            $record = new Service;
         } else {
-            $record = event::find($record);
+            $record = Service::find($record);
         }
 
    if ($request->isMethod('post')) {
@@ -36,28 +35,27 @@ class EventController extends Controller
     }
     $record->save(); // Save the record, including the image filename
 
-    return redirect()->route('admin.event');
+    return redirect()->route('admin.services');
 } else {
-    return view('admin.pages.events.create-event', compact('record'));
+    return view('admin.pages.service.creat-services', compact('record'));
 }
 }
 
 public function destroy($id)
 {
-$record = event::find($id);
+$record = Service::find($id);
 // Check if the car exists
 if ($record) {
     // Delete the car from the database
     $record->delete();
 
     // Optionally, you can add a success message to display to the user
-    return redirect()->route('admin.event')->with('success', 'Detail deleted successfully!');
+    return redirect()->route('admin.services')->with('success', 'Detail deleted successfully!');
 } else {
     // Optionally, you can add an error message to display to the user
-    return redirect()->route('admin.event')->with('error', 'Detail not found!');
+    return redirect()->route('admin.services')->with('error', 'Detail not found!');
 }
 
 }
 
 }
-
