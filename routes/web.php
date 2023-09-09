@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OrganizerController;
 use App\Http\Controllers\Auth\AttendeeController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\VisitorController;
 
 
 
@@ -23,7 +25,7 @@ use App\Http\Controllers\Auth\AttendeeController;
 
 
 Route::get('/' , [FrontController::class , 'index'])->name('index');
-Route::get('event' , [FrontController::class , 'event'])->name('event');
+
 
 Route::prefix('admin')->group(function () {
 
@@ -40,13 +42,13 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/service' , [HomeController::class , 'service'])->name('admin.service');
 
-//event
+//services
 
-        Route::get('/view/event', [EventController::class, 'index'])->name('admin.event');
+        Route::get('/view/services', [ServiceController::class, 'index'])->name('admin.services');
 
-        Route::any('/create/event/info/{id?}', [EventController::class, 'create'])->name('create.eventinfo');
+        Route::any('/create/services/info/{id?}', [ServiceController::class, 'create'])->name('create.servicesinfo');
 
-        Route::get('/delete/event/info/{id?}', [EventController::class, 'destroy'])->name('delete.eventinfo');
+        Route::get('/delete/services/info/{id?}', [ServiceController::class, 'destroy'])->name('delete.servicesinfo');
 
 
     });
@@ -62,8 +64,8 @@ Route::prefix('attendee')->group(function () {
     Route::post('/post-login' , [AttendeeController::class , 'postlogin'])->name('attendee.postlogin');
     Route::post('/post-register' , [AttendeeController::class , 'postregister'])->name('attendee.postregister');
     Route::get('/logout' , [AttendeeController::class , 'logout'])->name('attendee.logout');
-
-
+    Route::get('/contact' , [VisitorController::class , 'contact'])->name('contact');
+    Route::post('/query', [VisitorController::class, 'query'])->name('query');
 
 });
 

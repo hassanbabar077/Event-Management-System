@@ -3,10 +3,10 @@
 @section('admin-content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="col-lg-12 d-flex justify-content-around align-content-center">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span>List of events</h4>
-            <div class="">
-                <a href="{{ route('create.eventinfo') }}"  class="btn btn-success">Add Event info</a>
-            </div>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Visitor Data</span></h4>
+            {{-- <div class="">
+                <a href="{{ route('create.servicesinfo') }}"  class="btn btn-success">Add Event info</a>
+            </div> --}}
         </div>
 
 
@@ -26,34 +26,31 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Content</th>
-                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Number</th>
+                                        <th>Message</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    @foreach ($record as $data)
+                                    @foreach ($info as $vary)
                                         <tr>
-                                            {{-- @php
-                                                dd($record);
-                                            @endphp --}}
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <img src="{{asset('uploads/main-images/cars/' .$data->main_image) }}"
-                                                    alt="not-found" width="100px" height="100px">
-                                            </td>
-                                            <td>{{ $data->title }}</td>
-                                            <td> {{ $data->content }}</td>
-                                            <td>
-                                                <a href="{{ route('create.eventinfo', $data['id']) }}" class="me-3"><i
+                                            <td> {{ $vary->name }}</td>
+                                            <td> {{ $vary->email }}</td>
+                                            <td> {{ $vary->number }}</td>
+                                            <td> {{ $vary->message }}</td>
+                                            <td><a href="{{route('edit.contact',$request->id)}}" > Edit</a></td>
+
+                                            {{-- <td>
+                                                <a href="{{ route('create.visitorinfo', $vary['id']) }}" class="me-3"><i
                                                         class='bx bx-edit-alt'></i></a>
-                                                <a href="{{ route('delete.eventinfo', $data['id']) }}" class="me-3">
+                                                <a href="{{ route('delete.visitorinfo', $vary['id']) }}" class="me-3">
                                                     <i class='bx bx-trash-alt'></i></a>
                                                 <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#notification-details-{{ $data->id }}"
+                                                    data-bs-target="#notification-details-{{ $vary->id }}"
                                                     title="View Detail">
                                                     <i class='bx bx-selection'></i>
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -66,7 +63,7 @@
         </div>
 
     </div>
-    @foreach ($record as $data)
+    {{-- @foreach ($record as $data)
         <div class="modal fade" id="notification-details-{{ $data->id }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
                 <div class="modal-content">
@@ -75,8 +72,6 @@
                     </div>
                     <div class="modal-body pb-5 px-sm-5 pt-50">
                         <div class="text-center mb-2">
-                            <h1 class="mb-1">Hafiz Details</h1>
-                            <p>IT Centre Rahim Yar Khan</p>
                             <img src="{{ asset('uploads/main-images/cars/' . $data->main_image) }}" class="img-fluid rounded float-left" width="200"
                                 alt="">
                         </div>
@@ -94,5 +89,5 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 @endsection

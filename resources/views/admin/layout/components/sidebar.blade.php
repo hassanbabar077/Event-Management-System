@@ -28,16 +28,20 @@
 
         <li class="menu-item">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <a href="" class="menu-link">
 =======
             <a href="{{ route('admin.event') }}" class="menu-link">
 >>>>>>> 3ce68c9e9813f4b7b598c84881e39256d7b01300
+=======
+            <a href="" class="menu-link">
+>>>>>>> cb3223e9b3db6fca1ac022e33f9a4bcd721fd505
                 <i class="menu-icon tf-icons bx bx-dish"></i>
                 <div data-i18n="Authentications">Events</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{route('admin.services')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dish"></i>
                 <div data-i18n="Authentications">Services</div>
             </a>

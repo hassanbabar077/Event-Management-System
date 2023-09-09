@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\event;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\Visitor;
 
 class FrontController extends Controller
 {
     public function index(){
-        $record = event::all();
+        $record = Service::all();
         return view('pages.index',compact('record'));
     }
-    // public function event(){
-    //     $record = event::all();
-    //     return view('pages.event', compact('record'));
-    // }
 }

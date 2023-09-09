@@ -11,7 +11,7 @@
                     <h5 class="card-header">Create a New event info</h5>
                     <div class="card-body">
                         <form role="form"
-                            @if (empty($record['id'])) action="{{ route('create.eventinfo') }}" @else action="{{ route('create.eventinfo', $record['id']) }}" @endif
+                            @if (empty($record['id'])) action="{{ route('create.servicesinfo') }}" @else action="{{ route('create.servicesinfo', $record['id']) }}" @endif
                             method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
