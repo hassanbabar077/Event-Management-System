@@ -5,9 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Auth;
 
-class AttendeeMiddleware
+class OrganizerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,8 +15,8 @@ class AttendeeMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::guard('attendee')->check()){
-            return redirect()->route('attendee.login');
+        if(!Auth::guard('organizer')->check()){
+            return redirect()->route('organizer.login');
         }
         return $next($request);
     }

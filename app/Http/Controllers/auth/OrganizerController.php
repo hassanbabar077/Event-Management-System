@@ -16,28 +16,28 @@ class OrganizerController extends Controller
         return view('pages.organizer-login');
       }
 
-      public function register(){
-        return view('pages.organizer-register');
-      }
-      public function postregister(RegisterRequest $request){
+    //   public function register(){
+    //     return view('pages.organizer-register');
+    //   }
+    //   public function postregister(RegisterRequest $request){
 
-        Organizer::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
-        // Mail::send( ['email' => $request->email], function($message) use($request){
-        //     $message->to($request->email);
-        // });
-         return redirect()->route('organizer.login');
-    }
+    //     Organizer::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password)
+    //     ]);
+    //     // Mail::send( ['email' => $request->email], function($message) use($request){
+    //     //     $message->to($request->email);
+    //     // });
+    //      return redirect()->route('organizer.login');
+    // }
     public function postlogin(LoginRequest $request){
 
         $credentials=$request->only(['email', 'password']);
         // dd($credentials);
         $check=Auth::guard('organizer')->attempt($credentials);
         if($check){
-            return redirect()->route('organizer.dashboard');
+            return redirect()->route('admin.index');
         }
         return redirect()->back();
     }

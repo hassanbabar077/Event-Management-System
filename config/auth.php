@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'attendees',
         ],
+        'organizer' => [
+            'driver' => 'session',
+            'provider' => 'organizers',
+        ],
 
     ],
 
@@ -74,7 +78,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Attendee::class,
         ],
-       
+        'organizers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Organizer::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

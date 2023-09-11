@@ -3,9 +3,9 @@
 @section('admin-content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="col-lg-12 d-flex justify-content-around align-content-center">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span>List of Services</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span>List of Event Type</h4>
             <div class="">
-                <a href="{{ route('create.servicesinfo') }}"  class="btn btn-success">Add Service info</a>
+                <a href="{{route('create.event-typeinfo')}}"  class="btn btn-success">Add Type</a>
             </div>
         </div>
 
@@ -20,32 +20,28 @@
                     <span class="text-danger">{{ Session::get('error') }}</span>
                 @endif
                 <div class="card mb-4">
-                    <h5 class="card-header">List of Services</h5>
+                    <h5 class="card-header">List of Event Types</h5>
                     <div class="card-body">
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Content</th>
+                                        <th>Nmae</th>
+
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($record as $data)
                                         <tr>
-                                           
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <img src="{{asset('uploads/main-images/cars/' .$data->main_image) }}"
-                                                    alt="not-found" width="100px" height="100px">
-                                            </td>
-                                            <td>{{ $data->title }}</td>
-                                            <td> {{ $data->content }}</td>
+
+
+                                            <td>{{ $data->name }}</td>
+
                                             <td>
-                                                <a href="{{ route('create.servicesinfo', $data['id']) }}" class="me-3"><i
+                                                <a href="{{ route('create.event-typeinfo', $data['id']) }}" class="me-3"><i
                                                         class='bx bx-edit-alt'></i></a>
-                                                <a href="{{ route('delete.servicesinfo', $data['id']) }}" class="me-3">
+                                                <a href="{{ route('delete.event-typeinfo', $data['id']) }}" class="me-3">
                                                     <i class='bx bx-trash-alt'></i></a>
                                                 <a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#notification-details-{{ $data->id }}"
@@ -64,7 +60,7 @@
         </div>
 
     </div>
-    @foreach ($record as $data)
+    {{-- @foreach ($record as $data)
         <div class="modal fade" id="notification-details-{{ $data->id }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
                 <div class="modal-content">
@@ -90,5 +86,5 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 @endsection

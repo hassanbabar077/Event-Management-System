@@ -1,11 +1,11 @@
-@extends('admin.layout.app')
+@extends('admin.layout.app' )
 
 @section('admin-content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="col-lg-12 d-flex justify-content-around align-content-center">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span>List of Services</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span>List of Events</h4>
             <div class="">
-                <a href="{{ route('create.servicesinfo') }}"  class="btn btn-success">Add Service info</a>
+                <a href="{{route('create.eventsinfo')}}"  class="btn btn-success">Add Events info</a>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
                     <span class="text-danger">{{ Session::get('error') }}</span>
                 @endif
                 <div class="card mb-4">
-                    <h5 class="card-header">List of Services</h5>
+                    <h5 class="card-header">List of Events</h5>
                     <div class="card-body">
                         <div class="table-responsive text-nowrap">
                             <table class="table">
@@ -28,24 +28,35 @@
                                     <tr>
                                         <th>Image</th>
                                         <th>Title</th>
-                                        <th>Content</th>
+                                        <th>Price</th>
+                                        <th>Total Tickets</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Time</th>
+                                        <th>Discription</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($record as $data)
                                         <tr>
-                                           
+
                                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                                 <img src="{{asset('uploads/main-images/cars/' .$data->main_image) }}"
                                                     alt="not-found" width="100px" height="100px">
                                             </td>
                                             <td>{{ $data->title }}</td>
-                                            <td> {{ $data->content }}</td>
+                                            <td>{{$data->status}}</td>
+                                            <td> {{ $data->price }}</td>
+                                            <td> {{ $data->totaltickets }}</td>
+                                            <td> {{ $data->startDate }}</td>
+                                            <td> {{ $data->endDate }}</td>
+                                            <td> {{ $data->time }}</td>
+                                            <td> {{ $data->discription }}</td>
                                             <td>
-                                                <a href="{{ route('create.servicesinfo', $data['id']) }}" class="me-3"><i
+                                                <a href="{{ route('create.eventsinfo', $data['id']) }}" class="me-3"><i
                                                         class='bx bx-edit-alt'></i></a>
-                                                <a href="{{ route('delete.servicesinfo', $data['id']) }}" class="me-3">
+                                                <a href="{{ route('delete.eventsinfo', $data['id']) }}" class="me-3">
                                                     <i class='bx bx-trash-alt'></i></a>
                                                 <a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#notification-details-{{ $data->id }}"
@@ -82,8 +93,8 @@
                                 <div class="fw-bolder">{{ $data->title ?? '' }}</div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <label class="form-label" for="jobTitle">Content</label>
-                                <div class="fw-bolder">{{ $data->content ?? '' }}</div>
+                                <label class="form-label" for="jobTitle">Status</label>
+                                <div class="fw-bolder">{{ $data->status ?? '' }}</div>
                             </div>
                         </div>
                     </div>

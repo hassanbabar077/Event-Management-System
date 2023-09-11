@@ -20,7 +20,7 @@
                     <span class="text-danger">{{ Session::get('error') }}</span>
                 @endif
                 <div class="card mb-4">
-                    <h5 class="card-header">List of Event</h5>
+                    <h5 class="card-header">List of Visitor</h5>
                     <div class="card-body">
                         <div class="table-responsive text-nowrap">
                             <table class="table">
