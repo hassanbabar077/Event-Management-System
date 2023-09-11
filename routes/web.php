@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\EventTypeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OrganizerController;
 use App\Http\Controllers\Auth\AttendeeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\StripePaymentController;
 
 
 
@@ -26,11 +28,15 @@ use App\Http\Controllers\VisitorController;
 
 Route::get('/' , [FrontController::class , 'index'])->name('index');
 
+Route::get('/event' , [FrontController::class , 'event'])->name('event');
+
+Route::get('/contact' , [VisitorController::class , 'contact'])->name('contact');
+
 
 Route::prefix('admin')->group(function () {
 
 
-    Route::get('/login' , [HomeController::class , 'login'])->name('admin.login');
+    Route::get('/login' , [HomeController::class , 'login'])->name('login');
 
     Route::post('/post-login' , [AuthController::class , 'postlogin'])->name('admin.postlogin');
 
@@ -40,7 +46,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/index' , [HomeController::class , 'index'])->name('admin.index');
 
-        Route::get('/service' , [HomeController::class , 'service'])->name('admin.service');
+
+
+        Route::get('/queries' , [HomeController::class , 'queries'])->name('admin.queries');
 
 //services
 
@@ -50,7 +58,19 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/delete/services/info/{id?}', [ServiceController::class, 'destroy'])->name('delete.servicesinfo');
 
+//events
+        Route::get('/view/events', [EventController::class, 'index'])->name('admin.events');
 
+        Route::any('/create/events/info/{id?}', [EventController::class, 'create'])->name('create.eventsinfo');
+
+        Route::get('/delete/events/info/{id?}', [EventController::class, 'destroy'])->name('delete.eventsinfo');
+
+        //types
+        Route::get('/view/event-type', [EventTypeController::class, 'index'])->name('admin.event-type');
+
+        Route::any('/create/event-type/info/{id?}', [EventTypeController::class, 'create'])->name('create.event-typeinfo');
+
+        Route::get('/delete/event-type/info/{id?}', [EventTypeController::class, 'destroy'])->name('delete.event-typeinfo');
     });
 
 
@@ -63,11 +83,28 @@ Route::prefix('attendee')->group(function () {
     Route::get('/register' , [AttendeeController::class , 'register'])->name('attendee.register');
     Route::post('/post-login' , [AttendeeController::class , 'postlogin'])->name('attendee.postlogin');
     Route::post('/post-register' , [AttendeeController::class , 'postregister'])->name('attendee.postregister');
-    Route::get('/logout' , [AttendeeController::class , 'logout'])->name('attendee.logout');
-    Route::get('/contact' , [VisitorController::class , 'contact'])->name('contact');
-    Route::post('/query', [VisitorController::class, 'query'])->name('query');
+
+
+    Route::middleware(['attendee'])->group(function () {
+        Route::get('/logout' , [AttendeeController::class , 'logout'])->name('attendee.logout');
+        Route::post('/query', [VisitorController::class, 'query'])->name('query');
+
+        Route::get('/payment' , [StripePaymentController::class , 'payment'])->name('payment');
+        Route::post('/post-payment', [StripePaymentController::class, 'postPayment'])->name('post.payment');
+
+    });
 
 });
+Route::prefix('organizer')->group(function () {
+
+    Route::get('/login' , [OrganizerController::class , 'login'])->name('organizer.login');
+
+    Route::post('/post-login' , [OrganizerController::class , 'postlogin'])->name('organizer.postlogin');
+
+});
+
+
+
 
 
 
