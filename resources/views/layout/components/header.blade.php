@@ -14,11 +14,13 @@
           <li class="nav-item"><a href="{{route('organizer.login')}}" class="nav-link">Organizer</a></li>
           <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
 
+          @if (Route::is('attendee'))
           @if (!Auth::guard('attendee')->check())
           <li class="nav-item cta mr-md-2"><a href="{{route('attendee.login')}}" class="nav-link">Login</a></li>
           @endif
           @if (Auth::guard('attendee')->check())
           <li class="nav-item cta mr-md-2"><a href="{{route('attendee.logout')}}" class="nav-link">Logout</a></li>
+          @endif
           @endif
         </ul>
       </div>

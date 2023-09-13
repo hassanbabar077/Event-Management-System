@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\OrganizerController;
 use App\Http\Controllers\Auth\AttendeeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\OrganizerEventController;
 use App\Http\Controllers\StripePaymentController;
 
 
@@ -100,6 +101,15 @@ Route::prefix('organizer')->group(function () {
     Route::get('/login' , [OrganizerController::class , 'login'])->name('organizer.login');
 
     Route::post('/post-login' , [OrganizerController::class , 'postlogin'])->name('organizer.postlogin');
+
+    Route::middleware(['organizer'])->group(function () {
+        Route::get('/index' , [FrontController::class , 'organizer'])->name('organizer.index');
+
+        Route::any('/create/events/info/{id?}', [OrganizerEventController::class, 'create'])->name('organizer.create.eventsinfo');
+
+        Route::get('/delete/events/info/{id?}', [OrganizerEventController::class, 'destroy'])->name('organizer.delete.eventsinfo');
+
+    });
 
 });
 

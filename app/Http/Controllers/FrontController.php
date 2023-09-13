@@ -18,4 +18,12 @@ class FrontController extends Controller
         $event = Event::all();
         return view('pages.event' , compact('event'));
     }
+
+    public function organizer(){
+        return view('organizer.index');
+    }
+
+    public function organizerEvent(){
+        return view('organizer.create-event');
+    }
 }
