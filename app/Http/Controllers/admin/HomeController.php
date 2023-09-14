@@ -26,4 +26,7 @@ class HomeController extends Controller
     public function event(){
         return view('admin.pages.events.event');
     }
+    public function payments(){
+        return view('admin.pages.payments');
+    }
 }

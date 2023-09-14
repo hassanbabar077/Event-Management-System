@@ -50,6 +50,8 @@ Route::prefix('admin')->group(function () {
 
 
         Route::get('/queries' , [HomeController::class , 'queries'])->name('admin.queries');
+        Route::get('/payments' , [HomeController::class , 'payments'])->name('admin.payments');
+
 
 //services
 
@@ -72,6 +74,8 @@ Route::prefix('admin')->group(function () {
         Route::any('/create/event-type/info/{id?}', [EventTypeController::class, 'create'])->name('create.event-typeinfo');
 
         Route::get('/delete/event-type/info/{id?}', [EventTypeController::class, 'destroy'])->name('delete.event-typeinfo');
+
+
     });
 
 
