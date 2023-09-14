@@ -10,7 +10,6 @@
           <li class="nav-item active"><a href="{{route('index')}}" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="{{route('event')}}" class="nav-link">Events</a></li>
-          <li class="nav-item"><a href="{{route('email')}}" class="nav-link">email</a></li>
 
           <li class="nav-item"><a href="{{route('organizer.login')}}" class="nav-link">Organizer</a></li>
           <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
