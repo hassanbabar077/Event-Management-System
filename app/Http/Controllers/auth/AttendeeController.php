@@ -55,5 +55,8 @@ public function logout(){
 
 
 }
+public function email(){
+    return view('pages.email');
+}
 
 }

@@ -88,6 +88,7 @@ Route::prefix('attendee')->group(function () {
     Route::get('/register' , [AttendeeController::class , 'register'])->name('attendee.register');
     Route::post('/post-login' , [AttendeeController::class , 'postlogin'])->name('attendee.postlogin');
     Route::post('/post-register' , [AttendeeController::class , 'postregister'])->name('attendee.postregister');
+    Route::get('/email' , [AttendeeController::class , 'email'])->name('email');
 
 
     Route::middleware(['attendee'])->group(function () {
